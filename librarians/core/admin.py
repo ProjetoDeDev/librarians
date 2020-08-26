@@ -12,6 +12,7 @@ class MatterAdmin(admin.ModelAdmin):
     inlines = [
         ContentInline,
     ]
+    list_display = ('title',)
 
 
 admin.site.register(Tags)
