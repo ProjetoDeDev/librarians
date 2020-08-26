@@ -12,8 +12,11 @@ class MatterAdmin(admin.ModelAdmin):
     inlines = [
         ContentInline,
     ]
-    list_display = ('title',)
+    list_display = ('title','get_tags')
+    search_fields = ['tags__title', 'title']
 
+    def get_tags(self, obj):
+        return "\n- ".join([p.title for p in obj.tags.all()])
 
 admin.site.register(Tags)
 admin.site.register(Matter, MatterAdmin)
