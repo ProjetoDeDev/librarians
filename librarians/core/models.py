@@ -13,7 +13,6 @@ class Tags(models.Model):
 class Matter(models.Model):
     title = models.CharField(max_length=128)
     tags = models.ManyToManyField('Tags')
-    contents = models.ForeignKey('Content', on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -25,6 +24,7 @@ class Content(models.Model):
     title = models.CharField(max_length=128)
     url = models.URLField()
     description = models.TextField()
+    matter = models.ForeignKey('Matter', on_delete=models.CASCADE)
     # file = models.FileField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)

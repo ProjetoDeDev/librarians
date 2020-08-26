@@ -1,3 +1,18 @@
 from django.contrib import admin
 
-# Register your models here.
+from librarians.core.models import Tags, Matter, Content
+
+
+class ContentInline(admin.TabularInline):
+    model = Content
+    extra = 1
+
+
+class MatterAdmin(admin.ModelAdmin):
+    inlines = [
+        ContentInline,
+    ]
+
+
+admin.site.register(Tags)
+admin.site.register(Matter, MatterAdmin)
